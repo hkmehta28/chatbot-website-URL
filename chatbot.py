@@ -88,7 +88,6 @@ def find_relevant_chunks(query, chunks):
     Improved retrieval with punctuation removal + keyword scoring
     """
 
-    # Remove punctuation
     query = re.sub(r'[^\w\s]', '', query.lower())
 
     stopwords = {"what", "is", "a", "the", "of", "in", "on", "and", "to", "for"}
@@ -179,14 +178,12 @@ def main():
     print("WEBSITE CHATBOT (RAG SYSTEM)")
     print("=" * 60)
 
-    # Step 1: Get URL
     url = input("Enter website URL: ").strip()
 
     if not url.startswith("http"):
         print("Invalid URL. Please include http/https.")
         return
 
-    # Step 2: Fetch content
     print("\nFetching website content...")
     raw_text = fetch_website_content(url)
 
@@ -196,7 +193,6 @@ def main():
 
     print("Content fetched successfully!")
 
-    # Step 3: Clean text
     print("\nCleaning text...")
     cleaned_text = clean_text(raw_text)
 
@@ -204,7 +200,6 @@ def main():
         print("No usable content found.")
         return
 
-    # Step 4: Chunking
     print("\nCreating chunks...")
     chunks = chunk_text(cleaned_text)
 
@@ -214,7 +209,6 @@ def main():
 
     print(f"{len(chunks)} chunks created.")
 
-    # Step 5: Start chatbot
     print("\nStarting chatbot...\n")
     chatbot_loop(chunks)
 
