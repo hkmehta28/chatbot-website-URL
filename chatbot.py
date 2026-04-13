@@ -5,17 +5,13 @@ from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from openai import OpenAI
 
-# Load environment variables
 load_dotenv()
 
-# Initialize OpenAI client
 api_key = os.getenv("OPENAI_API_KEY")
 if not api_key:
     raise ValueError("OPENAI_API_KEY not found in .env file")
 
 client = OpenAI(api_key=api_key)
-
-
 
 
 def extract_text_from_html(html):
@@ -48,7 +44,6 @@ def fetch_website_content(url):
 
         soup = BeautifulSoup(response.text, 'html.parser')
 
-        # ✅ Target main content div (Wikipedia specific)
         content_div = soup.find('div', {'id': 'mw-content-text'})
 
         if not content_div:
@@ -63,7 +58,6 @@ def fetch_website_content(url):
     except Exception as e:
         print(f"Error fetching website: {e}")
         return ""
-
 
 
 def clean_text(text):
@@ -85,8 +79,6 @@ def chunk_text(text, chunk_size=500):
         chunks.append(chunk)
 
     return chunks
-
-
 
 
 import re
@@ -118,7 +110,6 @@ def find_relevant_chunks(query, chunks):
             best_chunk = chunk
 
     return best_chunk if best_chunk else chunks[0]
-
 
 
 def ask_chatbot(query, context):
@@ -155,7 +146,6 @@ Question:
 
 
 
-
 def chatbot_loop(chunks):
     """
     Interactive chatbot in console.
@@ -178,7 +168,6 @@ def chatbot_loop(chunks):
 
         print("\nBot:", response)
         print("-" * 60)
-
 
 
 
@@ -228,10 +217,6 @@ def main():
     # Step 5: Start chatbot
     print("\nStarting chatbot...\n")
     chatbot_loop(chunks)
-
-
-    
-
 
 
 if __name__ == "__main__":
