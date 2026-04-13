@@ -1,0 +1,38 @@
+Step-by-Step Process Followed to Complete the Assignment
+
+1. Understanding the Requirement
+   I carefully read the assignment to understand the objective. The task was to build a console-based chatbot using the ChatGPT API that can interact with a given website URL. It also required implementing web scraping, data processing, and response generation.
+
+2. Environment Setup
+   I set up the Python environment and installed the required libraries such as requests, BeautifulSoup, python-dotenv, and openai. The OpenAI API key was stored securely in a .env file and loaded using environment variables.
+
+3. Web Scraping
+   I implemented a function to fetch website content using the requests library. I used BeautifulSoup to parse the HTML and removed unnecessary elements such as scripts, styles, headers, and navigation sections. I extracted meaningful text from the website, focusing mainly on paragraph content.
+
+4. Data Cleaning
+   The extracted text contained extra spaces and formatting issues. I cleaned the data by removing unnecessary whitespace and normalizing the text to make it suitable for further processing.
+
+5. Text Chunking
+   Since sending the entire website content to the API is inefficient, I divided the text into smaller chunks of around 500 words. This helps in managing token limits and improves the retrieval process.
+
+6. Query Processing
+   User queries were processed by converting them to lowercase and removing punctuation using regular expressions. I also removed common stopwords so that only meaningful keywords are used for matching.
+
+7. Retrieval Mechanism
+   I implemented a keyword-based retrieval system. Each chunk was checked against the query keywords, and a score was calculated based on matches. The chunk with the highest score was selected as the most relevant context.
+
+8. ChatGPT API Integration
+   I integrated the OpenAI ChatGPT API using the gpt-4o-mini model. A structured prompt was used to ensure the chatbot answers only based on the provided context. If the answer is not present in the context, the chatbot responds accordingly.
+
+9. Console-Based Chatbot
+   I created a loop-based console interface where the user can enter a website URL, ask multiple questions, and receive responses. The chatbot continues running until the user types "exit".
+
+10. Debugging and Improvements
+    During testing, I encountered issues such as irrelevant content being scraped and incorrect retrieval results. I resolved these by refining the scraping logic to extract meaningful content and improving the retrieval method using keyword scoring and punctuation handling.
+
+11. Testing
+    I tested the chatbot using content-rich websites such as Wikipedia. I verified that the chatbot correctly answers questions based on the website content and handles unknown queries properly.
+
+12. Finalization
+    After successful testing, I cleaned the code, ensured proper structure and error handling, and prepared the final files for submission.
+
